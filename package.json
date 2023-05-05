@@ -1,0 +1,37 @@
+{
+  "name": "taskbuddy-ts-postgres",
+  "version": "1.0.0",
+  "description": "This is a backend server for a task manager application with authentication and registration functionality. The server is built with TypeScript, Node.js, Express, and PostgreSQL as the relational database. Passwords are hashed and securely stored in the database. The project also includes Jest for testing, Eslint and Prettier for code quality, and Swagger for API documentation. Nodemon is used for automatic server restarts during development.",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon index",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HannaPleshko/TaskBuddy-TS-Postgres.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HannaPleshko/TaskBuddy-TS-Postgres/issues"
+  },
+  "homepage": "https://github.com/HannaPleshko/TaskBuddy-TS-Postgres#readme",
+  "dependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.39.0",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "pg": "^8.10.0",
+    "prettier": "^2.8.8",
+    "swagger-ui-express": "^4.6.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
