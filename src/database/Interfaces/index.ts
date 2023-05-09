@@ -5,3 +5,10 @@ export interface IUser {
   email: string;
   pwd: string;
 }
+
+export interface ISkill {
+  skill_id?: string;
+  skill: string;
+  description: string;
+  user_id: string;
+}

@@ -6,8 +6,8 @@ export class UserService {
   private userDB = new UserDB(client, pool);
 
   async getUsers(): Promise<IUser[]> {
-    const data = await this.userDB.getAll();
-    return data;
+    const users = await this.userDB.getAll();
+    return users;
   }
 
   async getUserById(user_id: string): Promise<IUser[]> {
@@ -16,17 +16,17 @@ export class UserService {
   }
 
   async createUser(user: IUser): Promise<IUser[]> {
-    const data = await this.userDB.create(user);
-    return data;
+    const createdUser = await this.userDB.create(user);
+    return createdUser;
   }
 
   async updateUser(user_id: string, user: IUser): Promise<IUser[]> {
-    const data = await this.userDB.updateById(user_id, user);
-    return data;
+    const updatedUser = await this.userDB.updateById(user_id, user);
+    return updatedUser;
   }
 
   async deleteUser(user_id: string): Promise<IUser[]> {
-    const data = await this.userDB.deleteById(user_id);
-    return data;
+    const deletedUser = await this.userDB.deleteById(user_id);
+    return deletedUser;
   }
 }

@@ -11,13 +11,25 @@ export const createTables = async (pool: Pool = defaultPool): Promise<void> => {
       .query(
         `
         CREATE TABLE IF NOT EXISTS users (
-          user_id     UUID DEFAULT MD5(RANDOM()::TEXT || CLOCK_TIMESTAMP()::TEXT)::UUID,
-          name        VARCHAR(20), 
-          surname     VARCHAR(30), 
-          email       VARCHAR(40), 
-          pwd         VARCHAR(30),
+          user_id               UUID DEFAULT MD5(RANDOM()::TEXT || CLOCK_TIMESTAMP()::TEXT)::UUID,
+          name                  VARCHAR(20) NOT NULL, 
+          surname               VARCHAR(30) NOT NULL, 
+          email                 VARCHAR(40) NOT NULL UNIQUE, 
+          pwd                   VARCHAR(30) NOT NULL,
         
           PRIMARY KEY(user_id)
+        );
+        
+        CREATE TABLE IF NOT EXISTS skills (
+          skill_id              UUID  DEFAULT MD5(RANDOM()::TEXT || CLOCK_TIMESTAMP()::TEXT)::UUID,
+          skill                 VARCHAR(20) NOT NULL, 
+          description           VARCHAR(100) NOT NULL, 
+          user_id               UUID  NOT NULL,
+
+          CONSTRAINT fk_user
+            FOREIGN KEY(user_id)
+              REFERENCES users(user_id)
+                ON DELETE CASCADE
         );
 `,
       )

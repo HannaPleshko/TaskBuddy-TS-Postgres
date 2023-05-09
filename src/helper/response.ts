@@ -1,7 +1,7 @@
 import { Response } from 'express';
-import { IUser } from '@database/Interfaces/index';
+import { IUser, ISkill } from '@database/Interfaces/index';
 
-type message = IUser | IUser[];
+type message = IUser | IUser[] | ISkill | ISkill[];
 
 export const buildResponse = (res: Response, status: number, message: message): void => {
   res.status(status);
