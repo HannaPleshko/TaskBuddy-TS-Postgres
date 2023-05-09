@@ -1,5 +1,7 @@
 import { Pool } from 'pg';
 import { defaultPool } from '../connection';
+import { HttpException } from '../../exceptions/HttpException';
+import { ExceptionType } from '../../exceptions/exceptions.type';
 
 export const createTables = async (pool: Pool = defaultPool): Promise<void> => {
   try {
@@ -19,8 +21,17 @@ export const createTables = async (pool: Pool = defaultPool): Promise<void> => {
         );
 `,
       )
+      .catch(error => {
+        if (error) {
+          console.log(error);
+          throw new HttpException(500, ExceptionType.DB_INITIALIZE_NOT_INITIALIZED);
+        }
+      });
     await client.query('COMMIT');
   } catch (error) {
     await pool.query('ROLLBACK');
+
+    if (error instanceof HttpException) throw error;
+    throw new HttpException(500, ExceptionType.DB_INITIALIZE_NOT_CONNECTED);
   }
 };

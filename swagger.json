@@ -7,9 +7,7 @@
   "paths": {
     "/user": {
       "get": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Get all users",
         "responses": {
           "200": {
@@ -18,9 +16,7 @@
         }
       },
       "post": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Create user",
         "requestBody": {
           "content": {
@@ -54,9 +50,7 @@
     },
     "/user/{_id}": {
       "get": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Get user by ID",
         "parameters": [
           {
@@ -75,9 +69,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Delete user by ID",
         "parameters": [
           {
@@ -96,9 +88,7 @@
         }
       },
       "put": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Update user by ID",
         "parameters": [
           {

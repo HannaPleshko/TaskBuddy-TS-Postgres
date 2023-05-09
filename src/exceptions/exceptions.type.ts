@@ -1,8 +1,11 @@
 export const ExceptionType = {
-  USERS_READ_NOT_FOUND: { id: 1, message: 'Users not found.' },
-  USER_READ_NOT_FOUND: { id: 2, message: 'User by ID not found.' },
-};
+  DB_INITIALIZE_NOT_INITIALIZED: { id: 1, message: 'DB not initialized.' },
+  DB_INITIALIZE_NOT_CONNECTED: { id: 2, message: 'DB not connected.' },
 
-export const SuccessType = {
-  USERS_SUCCESS: { id: 1, message: 'Users. Completed successfully.' },
+  DB_USERS_CREATE_NOT_CREATED: { id: 64, message: 'DB not created user.' },
+  DB_USERS_GET_ALL_NOT_GOT: { id: 65, message: 'DB not got users.' },
+  DB_USERS_GET_BY_ID_NOT_GOT: { id: 66, message: 'DB not got user.' },
+  DB_USERS_DELETE_NOT_DELETED: { id: 67, message: 'DB not deleted user.' },
+  DB_USERS_UPDATE_NOT_UPDETED: { id: 73, message: 'DB not updated user.' },
+  DB_USERS_NOT_FOUND: { id: 72, message: 'DB not found user.' },
 };

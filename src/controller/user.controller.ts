@@ -34,7 +34,7 @@ class UserController {
   updateUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const { user_id } = req.params;
-      const user= req.body;
+      const user = req.body;
       buildResponse(res, 200, await this.userService.updateUser(user_id, user));
     } catch (error) {
       next(error);

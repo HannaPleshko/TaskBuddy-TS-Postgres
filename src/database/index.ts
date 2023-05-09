@@ -9,5 +9,5 @@ export abstract class Database extends ConnectionDB {
   abstract getAll();
   abstract getById(id: string);
   abstract create(data: unknown);
-  abstract deleteById(id: string): void;
+  abstract deleteById(id: string);
 }
