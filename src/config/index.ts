@@ -2,4 +2,4 @@ import { config } from 'dotenv';
 
 config();
 
-export const { PORT } = process.env;
+export const { PORT, LOG_DIR, LOG_FORMAT } = process.env;

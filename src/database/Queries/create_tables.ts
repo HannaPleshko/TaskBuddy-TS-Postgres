@@ -23,7 +23,6 @@ export const createTables = async (pool: Pool = defaultPool): Promise<void> => {
       )
       .catch(error => {
         if (error) {
-          console.log(error);
           throw new HttpException(500, ExceptionType.DB_INITIALIZE_NOT_INITIALIZED);
         }
       });

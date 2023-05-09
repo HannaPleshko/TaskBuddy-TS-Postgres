@@ -1,5 +1,6 @@
 import { Client, Pool } from 'pg';
 import { createTables } from './Queries/create_tables';
+import { logger } from '../utils/logger';
 
 const credentials = {
   user: process.env.USER_DB,
@@ -26,9 +27,9 @@ export class ConnectionDB {
     try {
       await createTables(this.pool);
 
-      console.log(`Database initialization: success`);
+      logger.info(`Database initialization: success`);
     } catch (error) {
-      console.log(`Connection. initializeDB. ${error}`);
+      logger.error(`Connection. initializeDB. ${error}`);
     }
   }
 }

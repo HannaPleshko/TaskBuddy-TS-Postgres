@@ -44,7 +44,7 @@
   {
     "id": 8,
     "message": "Database not found user.",
-    "description": "In UserDB class method updateById",
+    "description": "In UserDB class",
     "status": 404
   }
 ]

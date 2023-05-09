@@ -1,5 +1,5 @@
 import express from 'express';
-import { PORT } from './config';
+import { PORT, LOG_FORMAT } from './config';
 import { Routes } from './interfaces/routes.interface';
 import { errorMiddleware, getAllErrors } from './middlewares/error.middleware';
 import { defaultClient as client, ConnectionDB, defaultPool as pool } from './database/connection';
@@ -7,6 +7,9 @@ import cors from 'cors';
 import { swagger } from './swagger/swagger';
 import swaggerUi from 'swagger-ui-express';
 import hpp from 'hpp';
+import { logger, stream } from './utils/logger';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 
 class App {
   public app: express.Application;
@@ -28,11 +31,11 @@ class App {
 
   public listen(): void {
     this.app.listen(this.port, () => {
-      console.log(`╭───────────────────────────────────────────────────╮`);
-      console.log(`│                                                   │`);
-      console.log(`│            App listening at port ${this.port}!            │`);
-      console.log(`│                                                   │`);
-      console.log(`╰───────────────────────────────────────────────────╯`);
+      logger.info(`╭───────────────────────────────────────────────────╮`);
+      logger.info(`│                                                   │`);
+      logger.info(`│            App listening at port ${this.port}!            │`);
+      logger.info(`│                                                   │`);
+      logger.info(`╰───────────────────────────────────────────────────╯`);
     });
   }
 
@@ -41,10 +44,12 @@ class App {
   }
 
   private initializeMiddlewares(): void {
+    this.app.use(morgan(LOG_FORMAT, { stream }));
     this.app.use(hpp());
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(cookieParser());
   }
 
   private initializeRoutes(routes: Routes[]): void {
