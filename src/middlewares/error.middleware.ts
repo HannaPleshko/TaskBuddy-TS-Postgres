@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { HttpException } from '../exceptions/HttpException';
+import HttpExceptionJSON from '../exceptions/HttpExceptions.json';
 
 export const errorMiddleware = (error: HttpException, req: Request, res: Response, next: NextFunction): void => {
   try {
@@ -15,9 +16,9 @@ export const errorMiddleware = (error: HttpException, req: Request, res: Respons
 
 export const getAllErrors = (req: Request, res: Response, next: NextFunction): void => {
   try {
-    // res.setHeader('Content-Type', 'application/json');
-    // res.json(JSON.stringify(HttpExceptionJSON));
-    // res.status(200);
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON.stringify(HttpExceptionJSON));
+    res.status(200);
 
     next();
   } catch (err) {

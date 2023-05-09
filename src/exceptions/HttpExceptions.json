@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "message": "Database not initialized.",
+    "description": "In create table query.",
+    "status": 500
+  },
+  {
+    "id": 2,
+    "message": "Database not connected.",
+    "description": "In create table query.",
+    "status": 500
+  },
+  {
+    "id": 3,
+    "message": "Database not created user.",
+    "description": "In UserDB class method create.",
+    "status": 500
+  },
+  {
+    "id": 4,
+    "message": "Database not got users.",
+    "description": "In UserDB class method getAll",
+    "status": 500
+  },
+  {
+    "id": 5,
+    "message": "Database not got user.",
+    "description": "In UserDB class method getById",
+    "status": 500
+  },
+  {
+    "id": 6,
+    "message": "Database not deleted user.",
+    "description": "In UserDB class method deleteById",
+    "status": 500
+  },
+  {
+    "id": 7,
+    "message": "Database not updated user.",
+    "description": "In UserDB class method updateById",
+    "status": 500
+  },
+  {
+    "id": 8,
+    "message": "Database not found user.",
+    "description": "In UserDB class method updateById",
+    "status": 404
+  }
+]

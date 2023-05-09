@@ -6,6 +6,7 @@ import { defaultClient as client, ConnectionDB, defaultPool as pool } from './da
 import cors from 'cors';
 import { swagger } from './swagger/swagger';
 import swaggerUi from 'swagger-ui-express';
+import hpp from 'hpp';
 
 class App {
   public app: express.Application;
@@ -40,6 +41,7 @@ class App {
   }
 
   private initializeMiddlewares(): void {
+    this.app.use(hpp());
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
