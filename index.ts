@@ -1,5 +1,5 @@
-import App from './src/app';
-import UserRoute from './src/routes/user.route';
+import App from '@app';
+import UserRoute from '@routes/user.route';
 
 const app = new App([new UserRoute()]);
 

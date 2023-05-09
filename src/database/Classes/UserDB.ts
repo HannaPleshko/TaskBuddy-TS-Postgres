@@ -1,8 +1,8 @@
 import { Database } from '..';
 import { IUser } from '../Interfaces';
-import { HttpException } from '../../exceptions/HttpException';
-import { ExceptionType } from '../../exceptions/exceptions.type';
-import { logger } from '../../utils/logger';
+import { HttpException } from '@exceptions/HttpException';
+import { ExceptionType } from '@exceptions/exceptions.type';
+import { logger } from '@utils/logger';
 import { DatabaseError } from 'pg';
 
 export class UserDB extends Database {

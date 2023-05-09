@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { UserService } from '../service/user.service';
-import { buildResponse } from '../helper/response';
+import { UserService } from '@services/user.service';
+import { buildResponse } from '@helper/response';
 
 class UserController {
   private userService = new UserService();

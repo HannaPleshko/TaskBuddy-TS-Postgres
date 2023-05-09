@@ -1,5 +1,22 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@*": ["*"],
+      "@config/*": ["config/*"],
+      "@controllers/*": ["controllers/*"],
+      "@helper/*": ["helper/*"],
+      "@exceptions/*": ["exceptions/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@services/*": ["services/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@database/*": ["database/*"],
+      "@models/*": ["models/*"],
+      "@routes/*": ["routes/*"],
+      "@utils/*": ["utils/*"]
+    },
+    "target": "es2017",
+    "esModuleInterop": true,
     "outDir": "dist",
     "module": "commonjs",
     "noImplicitAny": false,
@@ -9,7 +26,6 @@
     "types": ["node"],
     "typeRoots": ["./types", "@types", "node_modules/@types"],
     "strictNullChecks": false,
-    "esModuleInterop": true,
     "strict": true,
     "resolveJsonModule": true
   },

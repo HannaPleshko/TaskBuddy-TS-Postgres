@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { IUser } from '../database/Interfaces/index';
+import { IUser } from '@database/Interfaces/index';
 
 type message = IUser | IUser[];
 

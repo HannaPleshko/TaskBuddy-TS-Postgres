@@ -1,13 +1,13 @@
 import express from 'express';
-import { PORT, LOG_FORMAT } from './config';
-import { Routes } from './interfaces/routes.interface';
-import { errorMiddleware, getAllErrors } from './middlewares/error.middleware';
-import { defaultClient as client, ConnectionDB, defaultPool as pool } from './database/connection';
+import { PORT, LOG_FORMAT } from '@config';
+import { Routes } from '@interfaces/routes.interface';
+import { errorMiddleware, getAllErrors } from '@middlewares/error.middleware';
+import { defaultClient as client, ConnectionDB, defaultPool as pool } from '@database/connection';
 import cors from 'cors';
-import { swagger } from './swagger/swagger';
+import { swagger } from '@models/swagger';
 import swaggerUi from 'swagger-ui-express';
 import hpp from 'hpp';
-import { logger, stream } from './utils/logger';
+import { logger, stream } from '@utils/logger';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 

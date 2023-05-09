@@ -1,6 +1,6 @@
-import { defaultClient as client, defaultPool as pool } from '../database/connection';
-import { UserDB } from '../database/Classes/UserDB';
-import { IUser } from '../database/Interfaces';
+import { defaultClient as client, defaultPool as pool } from '@database/connection';
+import { UserDB } from '@database/Classes/UserDB';
+import { IUser } from '@database/Interfaces';
 
 export class UserService {
   private userDB = new UserDB(client, pool);

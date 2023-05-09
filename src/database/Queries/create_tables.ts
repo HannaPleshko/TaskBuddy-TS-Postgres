@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
 import { defaultPool } from '../connection';
-import { HttpException } from '../../exceptions/HttpException';
-import { ExceptionType } from '../../exceptions/exceptions.type';
+import { HttpException } from '@exceptions/HttpException';
+import { ExceptionType } from '@exceptions/exceptions.type';
 
 export const createTables = async (pool: Pool = defaultPool): Promise<void> => {
   try {

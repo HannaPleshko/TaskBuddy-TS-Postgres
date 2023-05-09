@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { Routes } from '../interfaces/routes.interface';
-import UserController from '../controller/user.controller';
+import { Routes } from '@interfaces/routes.interface';
+import UserController from '@controllers/user.controller';
 
 class UserRoute implements Routes {
   public path = '/user';

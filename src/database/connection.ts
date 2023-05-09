@@ -1,6 +1,6 @@
 import { Client, Pool } from 'pg';
 import { createTables } from './Queries/create_tables';
-import { logger } from '../utils/logger';
+import { logger } from '@utils/logger';
 
 const credentials = {
   user: process.env.USER_DB,

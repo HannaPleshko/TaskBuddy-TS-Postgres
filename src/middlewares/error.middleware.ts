@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { HttpException } from '../exceptions/HttpException';
-import HttpExceptionJSON from '../exceptions/HttpExceptions.json';
+import { HttpException } from '@exceptions/HttpException';
+import HttpExceptionJSON from '@exceptions/HttpExceptions.json';
 
 export const errorMiddleware = (error: HttpException, req: Request, res: Response, next: NextFunction): void => {
   try {
