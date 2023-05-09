@@ -6,8 +6,7 @@
   "scripts": {
     "start:dev": "nodemon index",
     "format": "prettier --write .",
-    "lint": "eslint . --ext .ts",
-    "pre-commit": ".husky/pre-commit"
+    "lint": "eslint --ext .ts src/"
   },
   "repository": {
     "type": "git",
@@ -26,6 +25,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "express": "^4.18.2",
     "nodemon": "^2.0.22",
     "pg": "^8.10.0",

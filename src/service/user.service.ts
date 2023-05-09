@@ -9,7 +9,7 @@ export class UserService {
     const data = await this.userDB.getAll();
     return data;
   }
-  
+
   async getUserById(user_id: string): Promise<IUser> {
     const user = await this.userDB.getById(user_id);
     return user;
