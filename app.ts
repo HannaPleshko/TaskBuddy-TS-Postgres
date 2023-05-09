@@ -1,11 +1,17 @@
+import { swagger } from './modules/Swagger';
+import { getAllErrors } from './middlewares/error.middleware';
+import compression from 'compression';
+import swaggerUi from 'swagger-ui-express';
+import cookieParser from 'cookie-parser';
 import express from 'express';
-import { PORT } from './config';
-import { Routes } from './interfaces/routes.interface';
-import { errorMiddleware, getAllErrors } from './middlewares/error.middleware';
+import hpp from 'hpp';
+import morgan from 'morgan';
+import { NODE_ENV, PORT, LOG_FORMAT } from '@config';
+import { Routes } from '@interfaces/routes.interface';
+import errorMiddleware from '@middlewares/error.middleware';
+import { logger, stream } from '@utils/logger';
 import { defaultClient as client, ConnectionDB, defaultPool as pool } from './database/connection';
 import cors from 'cors';
-import { swagger } from './swagger/swagger';
-import swaggerUi from 'swagger-ui-express';
 
 class App {
   public app: express.Application;
@@ -15,6 +21,7 @@ class App {
 
   constructor(routes: Routes[]) {
     this.app = express();
+    this.env = NODE_ENV || 'development';
     this.port = PORT || 3001;
     this.database = new ConnectionDB(client, pool);
 
@@ -27,11 +34,10 @@ class App {
 
   public listen(): void {
     this.app.listen(this.port, () => {
-      console.log(`╭───────────────────────────────────────────────────╮`);
-      console.log(`│                                                   │`);
-      console.log(`│            App listening at port ${this.port}!            │`);
-      console.log(`│                                                   │`);
-      console.log(`╰───────────────────────────────────────────────────╯`);
+      logger.info(`=================================`);
+      logger.info(`======= ENV: ${this.env} =======`);
+      logger.info(`🚀 App listening on the port ${this.port}`);
+      logger.info(`=================================`);
     });
   }
 
@@ -40,9 +46,15 @@ class App {
   }
 
   private initializeMiddlewares(): void {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    this.app.use('/healthcheck', require('express-healthcheck')());
+    this.app.use(morgan(LOG_FORMAT, { stream }));
+    this.app.use(hpp());
     this.app.use(cors());
+    this.app.use(compression());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(cookieParser());
   }
 
   private initializeRoutes(routes: Routes[]): void {

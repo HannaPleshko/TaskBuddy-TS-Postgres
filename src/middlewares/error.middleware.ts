@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { HttpException } from '../exceptions/HttpException';
 
-const errorMiddleware = (error: HttpException, req: Request, res: Response, next: NextFunction): void => {
+export const errorMiddleware = (error: HttpException, req: Request, res: Response, next: NextFunction): void => {
   try {
     const status: number = error.status || 500;
     const message: string = error.message || 'Something went wrong';
@@ -13,4 +13,14 @@ const errorMiddleware = (error: HttpException, req: Request, res: Response, next
   }
 };
 
-export default errorMiddleware;
+export const getAllErrors = (req: Request, res: Response, next: NextFunction): void => {
+  try {
+    // res.setHeader('Content-Type', 'application/json');
+    // res.json(JSON.stringify(HttpExceptionJSON));
+    // res.status(200);
+
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
