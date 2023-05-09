@@ -1,13 +1,6 @@
-import { PORT } from './src/config/index';
-import app from './src/app';
-import { createTables } from './src/initializeDB';
+import App from './src/app';
+import UserRoute from './src/routes/user.route';
 
-createTables();
+const app = new App([new UserRoute()]);
 
-app.listen(PORT, () => {
-  console.log(`╭───────────────────────────────────────────────────╮`);
-  console.log(`│                                                   │`);
-  console.log(`│            App listening at port ${PORT}!            │`);
-  console.log(`│                                                   │`);
-  console.log(`╰───────────────────────────────────────────────────╯`);
-});
+app.listen();

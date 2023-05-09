@@ -1,26 +1,28 @@
-import { getUsersDB, getUserByIdDB, createUserDB, updateUserDB, deleteUserDB } from '../repository/user.repository';
-import { ExceptionType } from '../exceptions/exceptions.type';
-import { HttpException } from '../exceptions/HttpException';
+import { defaultClient as client, defaultPool as pool } from '../database/connection';
+import { UserDB } from '../database/Classes/UserDB';
+import { IUser } from '../database/Interfaces';
 
-async function getUsers() {
-  const users = await getUsersDB();
-  return users;
-}
-async function getUserById(user_id) {
-  const user = await getUserByIdDB(user_id);
-  return user;
-}
-async function createUser(name, surname, email, pwd) {
-  const user = await createUserDB(name, surname, email, pwd);
-  return user;
-}
-async function updateUser(user_id, name, surname, email, pwd) {
-  const user = await updateUserDB(user_id, name, surname, email, pwd);
-  return user;
-}
-async function deleteUser(user_id) {
-  const user = await deleteUserDB(user_id);
-  return user;
-}
+export class UserService {
+  private userDB = new UserDB(client, pool);
 
-export { getUsers, getUserById, createUser, updateUser, deleteUser };
+  async getUsers() {
+    const data = await this.userDB.getAll();
+    return data;
+  }
+  async getUserById(user_id: string) {
+    const user = await this.userDB.getById(user_id);
+    return user;
+  }
+  async createUser(user: IUser) {
+    const data = await this.userDB.create(user);
+    return data;
+  }
+  async updateUser(user_id: string, user: IUser) {
+    const data = await this.userDB.updateById(user_id, user);
+    return data;
+  }
+  async deleteUser(user_id: string) {
+    const data = await this.userDB.deleteById(user_id);
+    return data;
+  }
+}

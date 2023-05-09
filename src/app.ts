@@ -1,25 +1,56 @@
 import express from 'express';
+import { PORT } from './config';
+import { Routes } from './interfaces/routes.interface';
+import errorMiddleware from './middlewares/error.middleware';
+import { defaultClient as client, ConnectionDB, defaultPool as pool } from './database/connection';
 import cors from 'cors';
-import bodyParser from 'body-parser';
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../swagger.json';
-import user from './controller/user.controller';
 
-const app = express();
+class App {
+  public app: express.Application;
+  public env: string;
+  public port: string | number;
+  public database: ConnectionDB;
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  constructor(routes: Routes[]) {
+    this.app = express();
+    this.port = PORT || 3001;
+    this.database = new ConnectionDB(client, pool);
 
-app.use('/user', user);
+    this.initializeMiddlewares();
+    this.initializeRoutes(routes);
+    this.initializeErrorHandling();
+    this.database.initializeDB();
+  }
 
-app.use((error, req, res, next) => {
-  const status = error.status || 500;
-  const message = error.message || 'Something went wrong';
-  const id = error.id || 0;
+  public listen(): void {
+    this.app.listen(this.port, () => {
+      console.log(`╭───────────────────────────────────────────────────╮`);
+      console.log(`│                                                   │`);
+      console.log(`│            App listening at port ${this.port}!            │`);
+      console.log(`│                                                   │`);
+      console.log(`╰───────────────────────────────────────────────────╯`);
+    });
+  }
 
-  console.error(`[${new Date().toISOString()}] Error: ${error}`);
-  res.status(status).send({ id, message });
-});
+  public getServer(): express.Application {
+    return this.app;
+  }
 
-export default app;
+  private initializeMiddlewares(): void {
+    this.app.use(cors());
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+  }
+
+  private initializeRoutes(routes: Routes[]): void {
+    routes.forEach(route => {
+      this.app.use('/api/v1/', route.router);
+    });
+  }
+
+  private initializeErrorHandling(): void {
+    this.app.use(errorMiddleware);
+  }
+}
+
+export default App;
