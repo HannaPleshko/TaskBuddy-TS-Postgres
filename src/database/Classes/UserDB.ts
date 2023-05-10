@@ -92,22 +92,21 @@ export class UserDB extends Database {
     try {
       await this.pool.query('BEGIN');
 
-      const queryForGet = {
-        text: 'SELECT * FROM users WHERE user_id = $1',
-        values: [user_id],
-      };
-
-      const foundUser: IUser[] = (await this.pool.query(queryForGet)).rows;
-      if (!foundUser.length) throw new HttpException(404, ExceptionType.DB_USERS_NOT_FOUND);
-
       const { name, surname, email, pwd } = data;
 
       const query = {
-        text: `UPDATE users SET name = $1, surname = $2, pwd = $3, email = $4 WHERE user_id = $5 RETURNING *`,
+        text: `UPDATE users SET
+        name = COALESCE($1, name),
+        surname = COALESCE($2, surname),
+        email = COALESCE($3, email),
+        pwd = COALESCE($4, pwd)
+        WHERE user_id = $5
+        RETURNING *`,
         values: [name, surname, email, pwd, user_id],
       };
 
       const user: IUser[] = (await this.pool.query(query)).rows;
+      if (!user.length) throw new HttpException(404, ExceptionType.DB_USERS_NOT_FOUND);
 
       await this.pool.query('COMMIT');
 

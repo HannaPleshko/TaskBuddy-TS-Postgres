@@ -103,7 +103,12 @@ export class SkillDB extends Database {
       const { skill, description, user_id } = data;
 
       const query = {
-        text: `UPDATE skills SET skill = $1, description = $2, user_id = $3 WHERE skill_id = $4 RETURNING *`,
+        text: `UPDATE skills SET
+        skill = COALESCE($1, skill),
+        description = COALESCE($2, description),
+        user_id = COALESCE($3, user_id),
+        WHERE skill_id = $4
+        RETURNING *`,
         values: [skill, description, user_id, skill_id],
       };
 
