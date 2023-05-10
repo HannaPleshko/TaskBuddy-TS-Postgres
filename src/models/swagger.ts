@@ -15,6 +15,10 @@ export const swagger = (): JsonObject => {
           name: 'User',
           description: 'User router',
         },
+        {
+          name: 'Skill',
+          description: 'Skill router',
+        },
       ],
     },
     apis: ['swagger.yaml'],

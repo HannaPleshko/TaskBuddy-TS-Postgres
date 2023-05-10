@@ -29,13 +29,13 @@ paths:
       responses:
         '200':
           description: Completed successfully
-  /api/v1/user/{_id}:
+  /api/v1/user/{user_id}:
     get:
       tags:
         - User
       summary: Get user by ID
       parameters:
-        - name: _id
+        - name: user_id
           in: path
           required: true
           schema:
@@ -48,7 +48,7 @@ paths:
         - User
       summary: Delete user by ID
       parameters:
-        - name: _id
+        - name: user_id
           in: path
           required: true
           schema:
@@ -61,7 +61,7 @@ paths:
         - User
       summary: Update user by ID
       parameters:
-        - name: _id
+        - name: user_id
           in: path
           required: true
           schema:
@@ -79,6 +79,85 @@ paths:
                 email:
                   type: string
                 pwd:
+                  type: string
+      responses:
+        '200':
+          description: Completed successfully
+  /api/v1/skill:
+    get:
+      tags:
+        - Skill
+      summary: Get all skills
+      responses:
+        '200':
+          description: Completed successfully
+    post:
+      tags:
+        - Skill
+      summary: Create user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                skill:
+                  type: string
+                description:
+                  type: string
+                user_id:
+                  type: string
+      responses:
+        '200':
+          description: Completed successfully
+  /api/v1/skill/{skill_id}:
+    get:
+      tags:
+        - Skill
+      summary: Get user by ID
+      parameters:
+        - name: skill_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Completed successfully
+    delete:
+      tags:
+        - Skill
+      summary: Delete user by ID
+      parameters:
+        - name: skill_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Completed successfully
+    put:
+      tags:
+        - Skill
+      summary: Update user by ID
+      parameters:
+        - name: skill_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                skill:
+                  type: string
+                description:
+                  type: string
+                user_id:
                   type: string
       responses:
         '200':
