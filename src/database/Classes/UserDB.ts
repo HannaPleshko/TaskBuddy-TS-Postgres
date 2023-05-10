@@ -106,7 +106,6 @@ export class UserDB extends Database {
       };
 
       const user: IUser[] = (await this.pool.query(query)).rows;
-      if (!user.length) throw new HttpException(404, ExceptionType.DB_USERS_NOT_FOUND);
 
       await this.pool.query('COMMIT');
 

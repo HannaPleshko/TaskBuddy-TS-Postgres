@@ -1,0 +1,10 @@
+# compiled output
+/node_modules
+
+# code formatter
+.eslintrc
+.eslintignore
+.prettierrc
+
+# docker
+Dockerfile
