@@ -74,7 +74,7 @@ export class SkillDB extends Database {
         values: [skill_id],
       };
 
-      const deletedSkill: ISkill[] = await this.pool.query(query).rows;
+      const deletedSkill: ISkill[] = (await this.pool.query(query)).rows;
       await this.pool.query('COMMIT');
 
       return deletedSkill;
@@ -103,7 +103,7 @@ export class SkillDB extends Database {
       const { skill, description, user_id } = data;
 
       const query = {
-        text: `UPDATE skills SET skill = $1, description = $2, user_id = $3 WHERE skill_id = $5 RETURNING *`,
+        text: `UPDATE skills SET skill = $1, description = $2, user_id = $3 WHERE skill_id = $4 RETURNING *`,
         values: [skill, description, user_id, skill_id],
       };
 
@@ -118,7 +118,7 @@ export class SkillDB extends Database {
       const error: DatabaseError = err;
       logger.error(`Message: ${error.message}. Detail: ${error.detail}`);
 
-      throw new HttpException(500, ExceptionType.DB_USERS_UPDATE_NOT_UPDETED);
+      throw new HttpException(500, ExceptionType.DB_SKILLS_UPDATE_NOT_UPDETED);
     }
   }
 }

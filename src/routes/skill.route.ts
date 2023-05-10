@@ -16,7 +16,7 @@ class SkillRoute implements Routes {
     this.router.get(`${this.path}`, this.skillController.getSkills);
     this.router.get(`${this.path}/:skill_id`, this.skillController.getSkillById);
     this.router.post(`${this.path}`, this.skillController.createSkill);
-    this.router.patch(`${this.path}/:skill_id`, this.skillController.updateSkill);
+    this.router.put(`${this.path}/:skill_id`, this.skillController.updateSkill);
     this.router.delete(`${this.path}/:skill_id`, this.skillController.deleteSkill);
   }
 }

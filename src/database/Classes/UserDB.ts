@@ -74,7 +74,7 @@ export class UserDB extends Database {
         values: [user_id],
       };
 
-      const user: IUser[] = await this.pool.query(query).rows;
+      const user: IUser[] = (await this.pool.query(query)).rows;
       await this.pool.query('COMMIT');
 
       return user;
