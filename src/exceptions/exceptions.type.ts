@@ -15,4 +15,16 @@ export const ExceptionType = {
   DB_SKILLS_DELETE_NOT_DELETED: { id: 12, message: 'DB not deleted skill.' },
   DB_SKILLS_UPDATE_NOT_UPDETED: { id: 13, message: 'DB not updated skill.' },
   DB_SKILLS_NOT_FOUND: { id: 14, message: 'DB not found skill.' },
+
+  DB_USER_GET_BY_EMAIL_NOT_GOT: { id: 15, message: 'DB not got user by email.' },
+  DB_USER_GET_BY_EMAIL_NOT_FOUND: { id: 16, message: 'DB not found user by email.' },
+  DB_USER_GET_BY_EMAIL_ALREADY_EXIST: { id: 17, message: 'DB user already exist.' },
+  DB_USER_INVALID_CREDENTIALS: { id: 18, message: 'DB user credentials invalid.' },
+};
+
+export const SuccessfullyType = {
+  DB_USER_SUCCESS_AUTHENTICATE: 'DB successfully user authenticate.',
+  DB_USER_SUCCESS_REGISTRATE: 'DB successfully user  registrate user.',
+  DB_USER_SUCCESS_CHANGE_CREDENTIALS: 'DB successfully change user credentials.',
+  DB_USER_SUCCESS_DELETE_USER: 'DB successfully delete user.',
 };

@@ -44,7 +44,67 @@
   {
     "id": 8,
     "message": "Database not found user.",
-    "description": "In UserDB class",
+    "description": "In UserDB class getAll | getById",
     "status": 404
+  },
+  {
+    "id": 9,
+    "message": "Database not created skill.",
+    "description": "In SkillDB class method create.",
+    "status": 500
+  },
+  {
+    "id": 10,
+    "message": "Database not got skills.",
+    "description": "In SkillDB class method getAll",
+    "status": 500
+  },
+  {
+    "id": 11,
+    "message": "Database not got skill.",
+    "description": "In SkillDB class method getById",
+    "status": 500
+  },
+  {
+    "id": 12,
+    "message": "Database not deleted skill.",
+    "description": "In SkillDB class method deleteById",
+    "status": 500
+  },
+  {
+    "id": 13,
+    "message": "Database not updated skill.",
+    "description": "In SkillDB class method updateById",
+    "status": 500
+  },
+  {
+    "id": 14,
+    "message": "Database not found skill.",
+    "description": "In SkillDB class getById",
+    "status": 404
+  },
+  {
+    "id": 15,
+    "message": "Database not got email.",
+    "description": "In UserDB class getByEmail",
+    "status": 500
+  },
+  {
+    "id": 16,
+    "message": "Database not found email.",
+    "description": "In UserDB class getByEmail",
+    "status": 404
+  },
+  {
+    "id": 17,
+    "message": "Database user already exist.",
+    "description": "In UserService class createUser",
+    "status": 400
+  },
+  {
+    "id": 18,
+    "message": "Database user credentials invalid.",
+    "description": "In UserService class updateUser | authenticateUser",
+    "status": 400
   }
 ]

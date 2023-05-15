@@ -15,7 +15,7 @@ export const createTables = async (pool: Pool = defaultPool): Promise<void> => {
           name                  VARCHAR(20) NOT NULL, 
           surname               VARCHAR(30) NOT NULL, 
           email                 VARCHAR(40) NOT NULL UNIQUE, 
-          pwd                   VARCHAR(30) NOT NULL,
+          pwd                   VARCHAR(100) NOT NULL,
         
           PRIMARY KEY(user_id)
         );
